@@ -37,7 +37,7 @@ public class RecommendationServiceImpl implements RecommendationService{
 	@Override
 	public List<Recommendation> getRecommendations(User survey) {
 		
-		logger.info("Executing the recommendation for " + survey);
+		logger.info("Executing the recommendation for " + survey + " base url " + dataServiceBaseUri);
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
