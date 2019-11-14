@@ -30,7 +30,7 @@ class App extends Component {
             <h2>JUG List</h2>
             {groups.map(group =>
               <div key={group.id}>
-                {group.name}
+                {group.firstName}
               </div>
             )}
           </div>

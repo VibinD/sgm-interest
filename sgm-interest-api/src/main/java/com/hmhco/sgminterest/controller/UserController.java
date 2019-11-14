@@ -65,5 +65,21 @@ public class UserController {
 		
         return (new ResponseEntity<User>(user, HttpStatus.OK));
     }
+	
+	@GetMapping("/users")
+    ResponseEntity<?> getGreeting() {
+		
+		User user1 = new User();
+		user1.setFirstName("Vibin1");
+		
+		User user2 = new User();
+		user2.setFirstName("Vibin2");
+		
+		List<User> userList = new ArrayList<User>();
+		userList.add(user1);
+		userList.add(user2);
+		
+        return (new ResponseEntity<List<User>>(userList, HttpStatus.OK));
+    }
 
 }
