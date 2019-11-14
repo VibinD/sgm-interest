@@ -24,7 +24,7 @@ import com.hmhco.sgminterest.domain.User;
 @RequestMapping("/api")
 public class UserController {
 	
-	@CrossOrigin(origins = "http://localhost:3000")
+	//@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/users")
     ResponseEntity<?> getGreeting() {
 		
