@@ -9,6 +9,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -37,16 +38,18 @@ public class RecommendationServiceImpl implements RecommendationService{
 		HttpEntity<Object> httpEntity = new HttpEntity<Object>(survey, headers);
 		ResponseEntity<List<Profile>> response = baseRestTemplate.exchange(dataServiceBaseUri + "/create", HttpMethod.POST, httpEntity, new ParameterizedTypeReference<List<Profile>>(){});
 		
-		Book b1 = new Book("1","Being an Artist", "Artist");
-		List<Book> bookList = new ArrayList<>();
-		bookList.add(b1);
-		
-		Recommendation r1 = new Recommendation(response.getBody(), bookList);
-		List<Recommendation> rList = new ArrayList<Recommendation>();
-		rList.add(r1);
-		//ResponseEntity<User> response = baseRestTemplate.exchange(dataServiceBaseUri + "/create", HttpMethod.POST, httpEntity, User.class);
-		
-		return rList;
+		if(response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
+			Book b1 = new Book("1","Being an Artist", "Artist");
+			List<Book> bookList = new ArrayList<>();
+			bookList.add(b1);
+			
+			Recommendation r1 = new Recommendation(response.getBody(), bookList);
+			List<Recommendation> rList = new ArrayList<Recommendation>();
+			rList.add(r1);
+			
+			return rList;
+		}
+		return null;
 	}
 
 }
