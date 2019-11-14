@@ -3,6 +3,7 @@ package com.hmhco.sgminterest.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -18,6 +19,9 @@ public class RecommendationServiceImpl implements RecommendationService{
 	
 	@Autowired
 	private RestTemplate baseRestTemplate;
+	
+	@Value("${spring.baseUri}")
+	private String dataServiceBaseUri;
 
 	@Override
 	public List<Recommendation> getRecommendations(UserSurvey survey) {
@@ -26,7 +30,7 @@ public class RecommendationServiceImpl implements RecommendationService{
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		HttpEntity<Object> httpEntity = new HttpEntity<Object>(survey, headers);
-		ResponseEntity<List<Recommendation>> response = baseRestTemplate.exchange("http://localhost:8081/getUserRecommendations", HttpMethod.POST, httpEntity, new ParameterizedTypeReference<List<Recommendation>>(){});
+		ResponseEntity<List<Recommendation>> response = baseRestTemplate.exchange(dataServiceBaseUri + "/create", HttpMethod.POST, httpEntity, new ParameterizedTypeReference<List<Recommendation>>(){});
 		
 		return response.getBody();
 	}
