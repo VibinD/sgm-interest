@@ -12,5 +12,7 @@ public interface ProfileService {
 	List<Profile> getProfiles(User user);
 
 	public List<Profile> getProfilesByCategoryAndKeywords(String category, List<String> keywords);
+	
+	void saveProfile(Profile profile);
 
 }

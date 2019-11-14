@@ -44,5 +44,11 @@ public class ProfileServiceImpl implements ProfileService{
 		return profiles;		
 	}
 
+	@Override
+	public void saveProfile(Profile profile) {
+		profileRepository.save(profile);
+		
+	}
+
 	
 }
