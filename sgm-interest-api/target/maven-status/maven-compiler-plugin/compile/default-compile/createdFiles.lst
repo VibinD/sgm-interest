@@ -1,0 +1,12 @@
+com/hmhco/sgminterest/SgmInterestApiApplication.class
+com/hmhco/sgminterest/controller/WelcomeController.class
+com/hmhco/sgminterest/controller/UserController.class
+com/hmhco/sgminterest/service/rest/HttpRestServiceImpl.class
+com/hmhco/sgminterest/config/AppConfig.class
+com/hmhco/sgminterest/domain/User.class
+com/hmhco/sgminterest/service/ProfileServiceImpl.class
+com/hmhco/sgminterest/service/ProfileService.class
+com/hmhco/sgminterest/service/RecommendationService.class
+com/hmhco/sgminterest/config/AppConfig$1.class
+com/hmhco/sgminterest/service/rest/HttpRestService.class
+com/hmhco/sgminterest/service/RecommendationServiceImpl.class
