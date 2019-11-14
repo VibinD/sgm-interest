@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +36,8 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/api")
 public class UserController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	private RecommendationService service;
 	
@@ -41,11 +45,17 @@ public class UserController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Student recommendations retrieved successfully") })
 	@PostMapping("/userRecommendations")
     ResponseEntity<?> getRecommendations(@Valid @RequestBody User user) {
+		
+		logger.info("User Object is receiveed " + user.toString());
+		
 		List<Recommendation> recommendationList = service.getRecommendations(user);
-		if(recommendationList != null && !recommendationList.isEmpty())
+		if(recommendationList != null && !recommendationList.isEmpty()) {
+			logger.info("recommendationList size " + recommendationList.size());
 			return (new ResponseEntity<List<Recommendation>>(recommendationList, HttpStatus.OK));
-		else
+		} else {
 			return (new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		}
+			
     }
 	
 	@GetMapping("/user/{id}")
