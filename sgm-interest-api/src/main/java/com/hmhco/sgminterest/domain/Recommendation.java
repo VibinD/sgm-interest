@@ -3,20 +3,20 @@ package com.hmhco.sgminterest.domain;
 import java.util.List;
 
 public class Recommendation {
-	private List<MentorProfile> profiles;
+	private List<Profile> profiles;
 	private List<Book> books;
 	
-	public Recommendation(List<MentorProfile> profiles, List<Book> books) {
+	public Recommendation(List<Profile> profiles, List<Book> books) {
 		super();
 		this.profiles = profiles;
 		this.books = books;
 	}
 
-	public List<MentorProfile> getProfiles() {
+	public List<Profile> getProfiles() {
 		return profiles;
 	}
 
-	public void setProfiles(List<MentorProfile> profiles) {
+	public void setProfiles(List<Profile> profiles) {
 		this.profiles = profiles;
 	}
 
