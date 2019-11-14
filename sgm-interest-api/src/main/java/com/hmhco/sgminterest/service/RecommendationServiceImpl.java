@@ -10,17 +10,19 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.hmhco.sgminterest.domain.Recommendation;
 import com.hmhco.sgminterest.domain.UserSurvey;
 
+@Service
 public class RecommendationServiceImpl implements RecommendationService{
 	
 	@Autowired
 	private RestTemplate baseRestTemplate;
 	
-	@Value("${spring.baseUri}")
+	@Value("${data.baseUri}")
 	private String dataServiceBaseUri;
 
 	@Override
