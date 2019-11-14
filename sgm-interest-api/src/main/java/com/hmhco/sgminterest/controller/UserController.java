@@ -38,12 +38,8 @@ public class UserController {
 	@PostMapping("/userRecommendations")
     ResponseEntity<?> getRecommendations(@Valid @RequestBody User user) {
 		List<Recommendation> recommendationList = service.getRecommendations(user);
-		//User recommendation = service.getRecommendations(user);
 		if(recommendationList != null && !recommendationList.isEmpty())
 			return (new ResponseEntity<List<Recommendation>>(recommendationList, HttpStatus.OK));
-//		if(recommendation != null)
-//			return (new ResponseEntity<User>(recommendation, HttpStatus.OK));
-		
 		else
 			return (new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
