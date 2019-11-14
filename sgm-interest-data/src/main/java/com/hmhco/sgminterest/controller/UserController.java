@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hmhco.sgminterest.domain.User;
+import com.hmhco.sgminterest.domain.Recommendation;
+import com.hmhco.sgminterest.domain.UserSurvey;
 
 /**
  * @author damodaranv
@@ -28,23 +29,23 @@ public class UserController {
 	@GetMapping("/users")
     ResponseEntity<?> getGreeting() {
 		
-		User user1 = new User("1", "Vibin1", "vibin1@hmhco.com");
-		User user2 = new User("2", "Vibin 2 ", "vibin2@hmhco.com");
-		User user3 = new User("3", "Vibin 3 ", "vibin3@hmhco.com");
+//		UserSurvey user1 = new UserSurvey("1", "Vibin1", "vibin1@hmhco.com");
+//		UserSurvey user2 = new UserSurvey("2", "Vibin 2 ", "vibin2@hmhco.com");
+//		UserSurvey user3 = new UserSurvey("3", "Vibin 3 ", "vibin3@hmhco.com");
+//		
+		List<Recommendation> recommendationList = new ArrayList<Recommendation>();
+//		userList.add(user1);
+//		userList.add(user2);
+//		userList.add(user3);
 		
-		List<User> userList = new ArrayList<User>();
-		userList.add(user1);
-		userList.add(user2);
-		userList.add(user3);
-		
-        return (new ResponseEntity<List<User>>(userList, HttpStatus.OK));
+        return (new ResponseEntity<List<Recommendation>>(recommendationList, HttpStatus.OK));
     }
 	
 	
-	@GetMapping("/user/{id}")
-    ResponseEntity<?> getGroup(@PathVariable Long id) {
-		User user = new User("1", "Vibin1", "vibin1@hmhco.com");
-        return (new ResponseEntity<User>(user, HttpStatus.OK));
-    }
+//	@GetMapping("/user/{id}")
+//    ResponseEntity<?> getGroup(@PathVariable Long id) {
+//		UserSurvey user = new UserSurvey("1", "Vibin1", "vibin1@hmhco.com");
+//        return (new ResponseEntity<UserSurvey>(user, HttpStatus.OK));
+//    }
 
 }
