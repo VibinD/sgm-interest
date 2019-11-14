@@ -10,6 +10,6 @@ public class SgmInterestDataApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SgmInterestDataApplication.class, args);
-	}
 
+	}
 }
