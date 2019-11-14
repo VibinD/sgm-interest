@@ -3,20 +3,26 @@
  */
 package com.hmhco.sgminterest.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hmhco.sgminterest.domain.Recommendation;
 import com.hmhco.sgminterest.domain.UserSurvey;
+import com.hmhco.sgminterest.service.RecommendationService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 /**
  * @author damodaranv
  *
@@ -25,20 +31,19 @@ import com.hmhco.sgminterest.domain.UserSurvey;
 @RequestMapping("/api")
 public class UserController {
 	
+	@Autowired
+	private RecommendationService service;
+	
+	@ApiOperation(value = "Retrieves the student recommendations")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Student recommendations retrieved successfully") })
 	@CrossOrigin(origins = "http://localhost:3000")
-	@GetMapping("/users")
-    ResponseEntity<?> getGreeting() {
-		
-//		UserSurvey user1 = new UserSurvey("1", "Vibin1", "vibin1@hmhco.com");
-//		UserSurvey user2 = new UserSurvey("2", "Vibin 2 ", "vibin2@hmhco.com");
-//		UserSurvey user3 = new UserSurvey("3", "Vibin 3 ", "vibin3@hmhco.com");
-//		
-		List<Recommendation> recommendationList = new ArrayList<Recommendation>();
-//		userList.add(user1);
-//		userList.add(user2);
-//		userList.add(user3);
-		
-        return (new ResponseEntity<List<Recommendation>>(recommendationList, HttpStatus.OK));
+	@PostMapping("/userRecommendations")
+    ResponseEntity<?> getRecommendations(@Valid @RequestBody UserSurvey userSurvey) {
+		List<Recommendation> recommendationList = service.getRecommendations(userSurvey);
+		if(recommendationList != null && !recommendationList.isEmpty())
+			return (new ResponseEntity<List<Recommendation>>(recommendationList, HttpStatus.OK));
+		else
+			return (new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 	
 	

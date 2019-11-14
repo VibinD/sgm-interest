@@ -13,3 +13,9 @@ sgm-interest-api/target/classes/META-INF/maven/com.hmhco/sgm-interest-api/pom.xm
 sgm-interest-data/target/classes/application.properties
 sgm-interest-data/target/classes/META-INF/maven/com.hmhco/sgm-interest-data/pom.properties
 sgm-interest-data/target/classes/META-INF/maven/com.hmhco/sgm-interest-data/pom.xml
+sgm-interest-data/bin/target/classes/application.properties
+sgm-interest-data/bin/target/classes/META-INF/maven/com.hmhco/sgm-interest-data/pom.properties
+sgm-interest-data/bin/target/classes/META-INF/maven/com.hmhco/sgm-interest-data/pom.xml
+sgm-interest-api/bin/target/classes/application.properties
+sgm-interest-api/bin/target/classes/META-INF/maven/com.hmhco/sgm-interest-api/pom.properties
+sgm-interest-api/bin/target/classes/META-INF/maven/com.hmhco/sgm-interest-api/pom.xml

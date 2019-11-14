@@ -1,6 +1,6 @@
 package com.hmhco.sgminterest.domain;
 
-public class QuestionInfo {
+public class QuestionAnswer {
 	private String questionId;
 	private String questionLabel;
 	private String answer;

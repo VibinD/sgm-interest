@@ -15,15 +15,15 @@ public class UserSurvey {
     private String firstName;
     private String lastName;
     private String grade;
-    private List<QuestionInfo> surveyInfo;
+    private List<QuestionAnswer> questions;
     
-	public UserSurvey(String userId, String firstName, String lastName, String grade, List<QuestionInfo> surveyInfo) {
+	public UserSurvey(String userId, String firstName, String lastName, String grade, List<QuestionAnswer> questions) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.grade = grade;
-		this.surveyInfo = surveyInfo;
+		this.questions = questions;
 	}
 	
 	public String getUserId() {
@@ -58,18 +58,18 @@ public class UserSurvey {
 		this.grade = grade;
 	}
 
-	public List<QuestionInfo> getSurveyInfo() {
-		return surveyInfo;
+	public List<QuestionAnswer> getSurveyInfo() {
+		return questions;
 	}
 
-	public void setSurveyInfo(List<QuestionInfo> surveyInfo) {
-		this.surveyInfo = surveyInfo;
+	public void setSurveyInfo(List<QuestionAnswer> surveyInfo) {
+		this.questions = surveyInfo;
 	}
 
 	@Override
 	public String toString() {
 		return "UserSurvey [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", grade="
-				+ grade + ", surveyInfo=" + surveyInfo + "]";
+				+ grade + ", surveyInfo=" + questions + "]";
 	}
     
 }
