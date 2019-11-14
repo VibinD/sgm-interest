@@ -24,7 +24,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String grade;
-	private List<Question> questionList;
+	private List<Question> questions;
 	
 	public String getUserId() {
 		return userId;
@@ -58,14 +58,12 @@ public class User {
 		this.grade = grade;
 	}
 
-	public List<Question> getQuestionList() {
-		return questionList;
+	public List<Question> getQuestions() {
+		return questions;
 	}
 
-	public void setQuestionList(List<Question> questionList) {
-		this.questionList = questionList;
+	public void setQuestions(List<Question> quesions) {
+		this.questions = quesions;
 	}
-	
-	
 
 }
