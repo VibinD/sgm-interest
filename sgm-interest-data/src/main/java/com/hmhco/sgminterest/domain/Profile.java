@@ -1,4 +1,4 @@
-package com.hmhco.sgminterest.persistence;
+package com.hmhco.sgminterest.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

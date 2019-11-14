@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.hmhco.sgminterest.domain.Question;
 import com.hmhco.sgminterest.domain.User;
-import com.hmhco.sgminterest.persistence.Profile;
+import com.hmhco.sgminterest.domain.Profile;
+import com.hmhco.sgminterest.persistence.ProfileDAOImpl;
 import com.hmhco.sgminterest.persistence.ProfileRepository;
 import com.hmhco.sgminterest.persistence.UserRepository;
 
@@ -19,6 +20,9 @@ public class ProfileServiceImpl implements ProfileService{
 	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private ProfileDAOImpl profileDAO;
+
 	
 	@Override
 	public List<Profile> getProfilesByCategoryAndSubCategory(String category, String subCategory) {
@@ -33,6 +37,11 @@ public class ProfileServiceImpl implements ProfileService{
 		String category = questions.get(0).getAnswer();
 		String subCategory = questions.get(1).getAnswer();
 		return getProfilesByCategoryAndSubCategory(category, subCategory);
+	}
+
+	public List<Profile> getProfilesByCategoryAndKeywords(String category, List<String> keywords) {
+		List<Profile> profiles = profileDAO.getProfileByCategoryAndKeywords(category, keywords);
+		return profiles;		
 	}
 
 	

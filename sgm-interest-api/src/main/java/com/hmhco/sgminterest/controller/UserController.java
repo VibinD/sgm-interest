@@ -3,6 +3,7 @@
  */
 package com.hmhco.sgminterest.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -10,11 +11,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hmhco.sgminterest.domain.Question;
 import com.hmhco.sgminterest.domain.Recommendation;
 import com.hmhco.sgminterest.domain.User;
 import com.hmhco.sgminterest.service.RecommendationService;
@@ -42,6 +46,24 @@ public class UserController {
 			return (new ResponseEntity<List<Recommendation>>(recommendationList, HttpStatus.OK));
 		else
 			return (new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+	
+	@GetMapping("/user/{id}")
+    ResponseEntity<?> getGroup(@PathVariable Long id) {
+		Question q = new Question();
+		q.setId(1);
+		q.setLabel("dummyQ");
+		q.setAnswer("dummyAns");
+		List<Question> qList = new ArrayList<>();
+		
+		User user = new User();
+		user.setFirstName("Vibin");
+		user.setLastName("D");
+		user.setUserId("1");
+		user.setGrade("8");
+		user.setQuestions(qList);
+		
+        return (new ResponseEntity<User>(user, HttpStatus.OK));
     }
 
 }

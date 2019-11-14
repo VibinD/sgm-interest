@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hmhco.sgminterest.domain.Profile;
 import com.hmhco.sgminterest.domain.User;
-import com.hmhco.sgminterest.persistence.Profile;
 import com.hmhco.sgminterest.persistence.UserDAO;
 import com.hmhco.sgminterest.persistence.UserRepository;
 import com.hmhco.sgminterest.service.ProfileService;
