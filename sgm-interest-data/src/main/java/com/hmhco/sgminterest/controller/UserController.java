@@ -3,48 +3,70 @@
  */
 package com.hmhco.sgminterest.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hmhco.sgminterest.domain.User;
+import com.hmhco.sgminterest.persistence.UserDAO;
+import com.hmhco.sgminterest.persistence.UserRepository;
 
 /**
  * @author damodaranv
  *
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value = "/")
 public class UserController {
+
+	private final Logger LOG = LoggerFactory.getLogger(getClass());
+
+	private final UserRepository userRepository;
+
+	private final UserDAO userDAO;
+
+	public UserController(UserRepository userRepository, UserDAO userDAO) {
+		this.userRepository = userRepository;
+		this.userDAO = userDAO;
+	}
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public User addNewUsers(@RequestBody User user) {
+		LOG.info("Saving user.");
+		return userRepository.save(user);
+	}
+
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public List<User> getAllUsers() {
+		LOG.info("Getting all users.");
+		return userRepository.findAll();
+	}
+
 	
-	@CrossOrigin(origins = "http://localhost:3000")
-	@GetMapping("/users")
-    ResponseEntity<?> getGreeting() {
-		
-		User user1 = new User("1", "Vibin1", "vibin1@hmhco.com");
-		User user2 = new User("2", "Vibin 2 ", "vibin2@hmhco.com");
-		User user3 = new User("3", "Vibin 3 ", "vibin3@hmhco.com");
-		
-		List<User> userList = new ArrayList<User>();
-		userList.add(user1);
-		userList.add(user2);
-		userList.add(user3);
-		
-        return (new ResponseEntity<List<User>>(userList, HttpStatus.OK));
-    }
-	
-	
-	@GetMapping("/user/{id}")
-    ResponseEntity<?> getGroup(@PathVariable Long id) {
-		User user = new User("1", "Vibin1", "vibin1@hmhco.com");
-        return (new ResponseEntity<User>(user, HttpStatus.OK));
-    }
+	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+	public Optional<User> getUser(@PathVariable String userId) {
+		LOG.info("Getting user with ID: {}.", userId);
+//		return userRepository.findOne(new Query(Criteria.where("userId").is(userId)), User.class);
+		return userRepository.findById(userId);
+	}
+
+
+	@RequestMapping(value = "/responses/{userId}", method = RequestMethod.GET)
+	public Object getAllUserResponses(@PathVariable String userId) {
+//		User user = userRepository.findOne(new Query(Criteria.where("userId").is(userId)), User.class);
+		Optional<User> user = userRepository.findById(userId);
+		if (user != null) {
+			return userDAO.getAllUserResponses(userId);
+		} else {
+			return "User not found.";
+		}
+	}
 
 }

@@ -1,0 +1,15 @@
+
+*.prefs
+.DS_Store
+.project
+sgm-interest-api/.classpath
+sgm-interest-api/.project
+*.class
+*.MF
+sgm-interest-data/.classpath
+sgm-interest-data/.project
+sgm-interest-data/target/*
+sgm-interest-data/bin/*
+sgm-interest-api/target/*
+sgm-interest-api/bin/*
+

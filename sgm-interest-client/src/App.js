@@ -9,7 +9,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const response = await fetch('http://localhost:8080/api/users');
+    const response = await fetch('http://34.225.162.67:8080/api/users');
     const body = await response.json();
     this.setState({ groups: body, isLoading: false });
   }
