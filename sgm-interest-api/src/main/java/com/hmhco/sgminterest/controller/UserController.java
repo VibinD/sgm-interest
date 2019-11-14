@@ -36,7 +36,6 @@ public class UserController {
 	
 	@ApiOperation(value = "Retrieves the student recommendations")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Student recommendations retrieved successfully") })
-	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/userRecommendations")
     ResponseEntity<?> getRecommendations(@Valid @RequestBody UserSurvey userSurvey) {
 		List<Recommendation> recommendationList = service.getRecommendations(userSurvey);
