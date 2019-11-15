@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
-import { TextField, Checkbox, Radio, Select } from "final-form-material-ui";
+import { TextField, Checkbox, Radio } from "final-form-material-ui";
 import {
   Typography,
   Paper,
@@ -9,12 +9,15 @@ import {
   CssBaseline,
   RadioGroup,
   FormLabel,
-  MenuItem,
   FormGroup,
   FormControl,
   FormControlLabel
 } from "@material-ui/core";
 import uuid from "uuidv4";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 
 const validate = values => {
   const errors = {};
@@ -26,6 +29,23 @@ const validate = values => {
   }
   return errors;
 };
+
+const useStyles = makeStyles({
+  card: {
+    minWidth: 275
+  },
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)"
+  },
+  title: {
+    fontSize: 14
+  },
+  pos: {
+    marginBottom: 12
+  }
+});
 
 const questionsMap = {
   painter: {
@@ -98,11 +118,11 @@ const questionsMap = {
     label: "nurse",
     answer: "Doctor"
   },
-  nurse: {
-    id: 15,
-    label: "nurse",
-    answer: "Doctor"
-  },
+  // nurse: {
+  //   id: 15,
+  //   label: "nurse",
+  //   answer: "Doctor"
+  // },
   proficiency: {
     id: 16,
     label: "proficiency",
@@ -235,7 +255,8 @@ const Ocupations = {
 };
 
 function App() {
-  let d = {};
+  const classes = useStyles();
+  let d;
   const onSubmit = async values => {
     const body = Questions(values);
     console.log(body);
@@ -275,7 +296,7 @@ function App() {
       <Form
         onSubmit={onSubmit}
         validate={validate}
-        render={({ handleSubmit, reset, submitting, pristine, values }) => (
+        render={({ handleSubmit, submitting, values }) => (
           <form onSubmit={handleSubmit} noValidate>
             <Paper style={{ padding: 16 }}>
               <Grid container alignItems="flex-start" spacing={2}>
@@ -299,7 +320,7 @@ function App() {
                     label="Last Name"
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                   <Field
                     fullWidth
                     required
@@ -455,35 +476,61 @@ function App() {
                       />
                     </Grid>
                   )}
-                {/* 
-                <Grid item style={{ marginTop: 16 }}>
-                  <Button
-                    type="button"
-                    variant="contained"
-                    onClick={reset}
-                    disabled={submitting || pristine}
-                  >
-                    Reset
-                  </Button>
-                </Grid> */}
-                <Grid item style={{ marginTop: 16 }}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    disabled={submitting}
-                    onClick={() => onSubmit(values)}
-                  >
-                    Submit
-                  </Button>
-                </Grid>
+                {values.Ocupation &&
+                  values.role &&
+                  values.role.length > 0 &&
+                  values.influence &&
+                  values.influence.length > 0 &&
+                  values.notes && (
+                    <Grid item style={{ marginTop: 16 }}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                        disabled={submitting}
+                        onClick={() => onSubmit(values)}
+                      >
+                        Submit
+                      </Button>
+                    </Grid>
+                  )}
               </Grid>
             </Paper>
-            <pre>{JSON.stringify(Questions(values), 0, 2)}</pre>
-            <pre>{JSON.stringify(d, 0, 2)}</pre>
+
+            {d &&
+              d[0] &&
+              d[0].profiles &&
+              d[0].profiles.map(({ name, category, description }) => (
+                <Card className={classes.card}>
+                  <CardContent>
+                    <Typography
+                      className={classes.title}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      {category}
+                    </Typography>
+                    <Typography variant="h5" component="h2">
+                      {name}
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                      {description}
+                      <br />
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
+              ))}
           </form>
         )}
       />
+
+      {/* Response is being mapped to display on cards */}
+
+      <pre>{JSON.stringify(d, 0, 2)}</pre>
+      {d && JSON.stringify(d)}
     </div>
   );
 }
