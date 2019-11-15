@@ -48,9 +48,13 @@ public class RecommendationServiceImpl implements RecommendationService{
 		logger.info("Executing the recommendation response for " + response);
 		
 		if(response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
-			Book b1 = new Book("1","Being an Artist", "Artist");
+			Book b1 = new Book("1", "Picasso: A Biagraphy", "Artist", "https://images-na.ssl-images-amazon.com/images/I/51juEKg7fZL._SX322_BO1,204,203,200_.jpg");
+			Book b2 = new Book("2", "Einstein, Picasso: Space, Time…", "Artist", "https://images-na.ssl-images-amazon.com/images/I/51V4Vi2-tiL._SX331_BO1,204,203,200_.jpg");
+			Book b3 = new Book("3", "Je Suis Le Cahier: The Sketchbooks of Picasso", "Artist", "https://images-na.ssl-images-amazon.com/images/I/51S706FMFRL._SX352_BO1,204,203,200_.jpg");
 			List<Book> bookList = new ArrayList<>();
 			bookList.add(b1);
+			bookList.add(b2);
+			bookList.add(b3);
 			
 			Recommendation r1 = new Recommendation(response.getBody(), bookList);
 			List<Recommendation> rList = new ArrayList<Recommendation>();
