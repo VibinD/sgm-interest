@@ -1,5 +1,6 @@
 package com.hmhco.sgminterest.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,13 @@ public class ProfileServiceImpl implements ProfileService{
 	public List<Profile> getProfiles(User user) {
 		userRepository.save(user);
 		List<Question> questions = user.getQuestions();
-		String category = questions.get(0).getAnswer();
-		String subCategory = questions.get(0).getLabel();
-		return getProfilesByCategoryAndSubCategory(category, subCategory);
+		if(questions != null && questions.size() > 0 ) {
+			String category = questions.get(0).getAnswer();
+			String subCategory = questions.get(0).getLabel();
+			return getProfilesByCategoryAndSubCategory(category, subCategory);
+		} else
+			return new ArrayList<Profile>();
+		
 	}
 
 	public List<Profile> getProfilesByCategoryAndKeywords(String category, List<String> keywords) {
