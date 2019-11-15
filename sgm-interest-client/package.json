@@ -9,7 +9,8 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-final-form": "^6.3.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "uuidv4": "^5.0.1"
   },
   "proxy": "http://localhost:8080",
   "scripts": {
