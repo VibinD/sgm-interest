@@ -35,7 +35,7 @@ public class ProfileServiceImpl implements ProfileService{
 		userRepository.save(user);
 		List<Question> questions = user.getQuestions();
 		String category = questions.get(0).getAnswer();
-		String subCategory = questions.get(1).getAnswer();
+		String subCategory = questions.get(0).getLabel();
 		return getProfilesByCategoryAndSubCategory(category, subCategory);
 	}
 
